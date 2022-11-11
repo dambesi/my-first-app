@@ -1,0 +1,36 @@
+<div class="component">
+  <p>detail works!</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <!-- <tbody>
+      <tr *ngIf="user$ | async as user">
+        <th scope="row">
+          <a routerLink="{{ user.id }}">{{ user.id }}</a>
+        </th>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.emailAdres }}</td>
+        <td>{{ user.role }}</td>
+      </tr>
+    </tbody> -->
+    <tbody>
+      <tr>
+        <th scope="row">
+          <a routerLink="{{ user?.id }}">{{ user?.id }}</a>
+        </th>
+        <td>{{ user?.firstName }}</td>
+        <td>{{ user?.lastName }}</td>
+        <td>{{ user?.emailAdres }}</td>
+        <td>{{ user?.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary" (click)="edit()">Edit</button>
+</div>
