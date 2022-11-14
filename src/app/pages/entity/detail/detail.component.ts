@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { EntityService } from '../../entity.service';
+import { EntityService } from '../entity.service';
 import { User } from '../user.model';
 
 @Component({
@@ -23,23 +23,26 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     console.log('DetailComponent ingeladen');
 
-    //// static snapshot van route om id op te halen
+    //// Static snapshot van route om id op te halen
     // this.userId = this.route.snapshot.paramMap.get('id');
+    // this.user = this.entityService.getById(Number(this.userId));
+    // console.log(this.userId);
+    // console.log(this.user);
 
-    //// Subscribe benadering om id op te halen
+    // // Subscribe benadering om id op te halen
     // this.route.paramMap.subscribe((params) => {
-    //   this.userId = params.get('id');
+    //   this.userId = Number(params.get('id'));
+    //   this.user = this.entityService.getById(Number(this.userId));
     //   console.log('User' + this.userId + 'details');
     // });
 
     // User ophalen via subscription
-    // this.subscription = this.route.paramMap.subscribe((params) => {
-    // this.userId = Number(params.get('id'));
-    this.userId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.userId);
-    this.user = this.entityService.getById(this.userId);
-    console.log(this.user);
-    // });
+    this.subscription = this.route.paramMap.subscribe((params) => {
+      this.userId = Number(params.get('id'));
+      this.user = this.entityService.getById(Number(this.userId));
+      console.log(this.userId);
+      console.log(this.user);
+    });
   }
 
   edit(): void {

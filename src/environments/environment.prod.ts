@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+
+  randomPersonApiEndpoint: 'https://randomuser.me/api?results=5',
 };

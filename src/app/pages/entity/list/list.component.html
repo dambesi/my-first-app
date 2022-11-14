@@ -10,26 +10,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users$ | async">
         <th scope="row">
           <a routerLink="{{ user.id }}">{{ user.id }}</a>
         </th>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
-        <td>{{ user.emailAdres }}</td>
+        <td>{{ user.email }}</td>
       </tr>
-      <!-- <tr>
-        <th scope="row"><a routerLink="2">2</a></th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row"><a routerLink="3">3</a></th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr> -->
     </tbody>
   </table>
 </div>
