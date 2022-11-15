@@ -26,7 +26,7 @@ export class RandomuserService {
     return this.http
       .get<RandomUser[]>(endpoint, { ...options, ...httpOptions })
       .pipe(
-        tap(console.log),
+        tap((response) => console.log(response)),
         // mapping response to results = > results is an object inside response.
         map((response: any) => response.results),
         tap(console.log),
@@ -38,7 +38,7 @@ export class RandomuserService {
               email: user.email,
               firstName: user.name.first,
               lastName: user.name.last,
-              id: user.id,
+              id: user.id.value,
               role: UserRoels.guest,
             });
             // // Mapping to custom user model

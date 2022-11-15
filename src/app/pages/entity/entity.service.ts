@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { User, UserGender, UserRoels } from './user.model';
 
 @Injectable({

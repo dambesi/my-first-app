@@ -19,20 +19,19 @@ export class ListComponent implements OnInit, OnDestroy {
   // constructor(private entityService: EntityService) {}
   constructor(private randomUserService: RandomuserService) {}
 
-  // ngOnInit(): void {
-  //   // getList via subscribe, deze moet wij destroyen om memory leak te voorkomen
-  //   this.subscription = this.randomUserService.getList().subscribe((result) => {
-  //     this.users = result;
-  //     console.log(this.users);
-  //   });
-  // }
-
   ngOnInit(): void {
+    //   // getList via subscribe, deze moet wij destroyen om memory leak te voorkomen
+    //   this.subscription = this.randomUserService.getList().subscribe((result) => {
+    //     this.users = result;
+    //     console.log(this.users);
+    //   });
+
     // getList via observable user$. The async pipe | in de html triggert de get request
+    // en ruimt de observable op wanneer wij de component verlaten.
     this.users$ = this.randomUserService.getList();
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe;
+    this.subscription?.unsubscribe();
   }
 }

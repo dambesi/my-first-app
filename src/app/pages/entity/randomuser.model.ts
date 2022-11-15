@@ -1,8 +1,8 @@
 import { UserRoels } from './user.model';
-export interface RandomUser {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: UserRoels;
+export class RandomUser {
+  id: number = 0;
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  role: UserRoels = UserRoels.guest;
 }
