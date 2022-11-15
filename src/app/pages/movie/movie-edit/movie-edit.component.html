@@ -12,42 +12,87 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="movie.name"
-          name="moviename"
-          #moviename="ngModel"
+          [(ngModel)]="movie.title"
+          name="movietitle"
+          #movietitle="ngModel"
           [ngClass]="{
-            'is-valid': moviename
+            'is-invalid':
+              (movietitle.invalid && movietitle.touched) ||
+              (existingMovieTitle$ | async)
           }"
           required
           minlength="3"
-          id="moviename"
-          placeholder="This the title of the movie"
+          id="movietitle"
+          placeholder="The title of the movie"
         />
-        <div>
-          *ngIf="moviename.valid && moviename.touched" class="invalid-feedback"
-          <div *ngIf="moviename.errors.required">Movie name is vereist.</div>
-          <div *ngIf="moviename.errors.minlength"></div>
+        <!-- Show invalidity message -->
+        <div
+          *ngIf="movietitle.valid && movietitle.touched"
+          class="invalid-feedback"
+        >
+          <div *ngIf="movietitle.errors?.['required']">
+            Movie name is vereist.
+          </div>
+          <div *ngIf="movietitle.errors?.['minlength']">
+            Minum title lenght is 3
+          </div>
         </div>
+        <!-- end -->
       </div>
       <br />
       <div class="form-group col-sm-12 col-lg-4">
-        <label for="exampleFormControlInput1">Release Year</label>
+        <label for="realeaseyear">Release Year</label>
         <input
-          type="email"
+          type="year"
           class="form-control"
-          id="exampleFormControlInput1"
+          [(ngModel)]="movie.year"
+          name="movieyear"
+          #movieyear="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              (movieyear.invalid && movieyear.touched) ||
+              (existingMovieTitle$ | async)
+          }"
+          required
+          minlength="4"
+          maxlength="4"
+          id="realeaseyear"
           placeholder="This the realease year of the movie"
         />
+        <!-- Show invalidity message -->
+        <div
+          *ngIf="movieyear.valid && movieyear.touched"
+          class="invalid-feedback"
+        >
+          <div
+            *ngIf="movieyear.errors?.['required']"
+            class="alert alert-danger"
+          >
+            Movie year is vereist.
+          </div>
+          <div *ngIf="movieyear.errors?.['minlength']">
+            Minimum length for year is 4
+          </div>
+          <div *ngIf="movieyear.errors?.['maxlength']">
+            Maximum length for year is 4
+          </div>
+        </div>
+        <!-- end -->
       </div>
       <br />
       <div class="form-group col-sm-12 col-lg-4">
-        <label for="exampleFormControlSelect1">Studio</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <label for="moviestudio">Studio</label>
+        <select
+          class="form-control"
+          id="moviestudio"
+          [(ngModel)]="movie.studio"
+          name="moviestudio"
+          #moviestudio="ngModel"
+          required
+        >
+          <ng-container *ngFor="let studio of studios$ | async">
+            <option [value]="studio.name">{{ studio.name }}</option>
+          </ng-container>
         </select>
       </div>
       <br />

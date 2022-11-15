@@ -10,7 +10,7 @@ export class MovieService {
   movieList: Movie[] = [
     {
       id: ++this.movieId,
-      title: 'Balde Runner',
+      title: 'Blade Runner',
       year: 1982,
       studio: 'Pixer',
       isInCinema: false,
@@ -39,6 +39,7 @@ export class MovieService {
   }
 
   getById(id: number): Observable<Movie> {
+    console.log(`Movie met ID ${id} gezocht`);
     return of(this.movieList.filter((item) => item.id === id)[0]);
   }
 }
