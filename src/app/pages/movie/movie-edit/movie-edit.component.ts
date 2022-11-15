@@ -22,11 +22,11 @@ export class MovieEditComponent implements OnInit {
     private route: ActivatedRoute,
     private movieService: MovieService,
     private studioService: StudioService
-  ) {
-    this.studios$ = this.studioService.getList();
-  }
+  ) {}
 
   ngOnInit(): void {
+    // Haal de studios op
+    this.studios$ = this.studioService.getList();
     // Haal de movie op voor edit
     this.subscriptionParams = this.route.paramMap
       .pipe(

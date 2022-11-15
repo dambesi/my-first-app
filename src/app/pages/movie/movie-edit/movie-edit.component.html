@@ -90,9 +90,11 @@
           #moviestudio="ngModel"
           required
         >
+          <!-- Populate option via object from component -->
           <ng-container *ngFor="let studio of studios$ | async">
             <option [value]="studio.name">{{ studio.name }}</option>
           </ng-container>
+          <!-- end -->
         </select>
       </div>
       <br />
