@@ -1,0 +1,93 @@
+<div class="component">
+  <p>movie-edit works!</p>
+  <form
+    #movieEditForm="ngForm"
+    name="form"
+    (ngSubmit)="movieEditForm.form.valid && onSubmit()"
+    novalidate
+  >
+    <div class="form-row">
+      <div class="form-group col-sm-12 col-lg-4">
+        <label for="movietitle">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="movie.name"
+          name="moviename"
+          #moviename="ngModel"
+          [ngClass]="{
+            'is-valid': moviename
+          }"
+          required
+          minlength="3"
+          id="moviename"
+          placeholder="This the title of the movie"
+        />
+        <div>
+          *ngIf="moviename.valid && moviename.touched" class="invalid-feedback"
+          <div *ngIf="moviename.errors.required">Movie name is vereist.</div>
+          <div *ngIf="moviename.errors.minlength"></div>
+        </div>
+      </div>
+      <br />
+      <div class="form-group col-sm-12 col-lg-4">
+        <label for="exampleFormControlInput1">Release Year</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="This the realease year of the movie"
+        />
+      </div>
+      <br />
+      <div class="form-group col-sm-12 col-lg-4">
+        <label for="exampleFormControlSelect1">Studio</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <br />
+      <p>Age Category</p>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="inlineRadio1"
+          value="option1"
+        />
+        <label class="form-check-label" for="inlineRadio1">All Family</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="inlineRadio2"
+          value="option2"
+        />
+        <label class="form-check-label" for="inlineRadio2">12+</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="inlineRadio3"
+          value="option3"
+        />
+        <label class="form-check-label" for="inlineRadio3">Kids</label>
+      </div>
+      <button type="submit" class="btn btn-primary me-1" routerLink="..">
+        Save
+      </button>
+      <button type="submit" class="btn btn-secondary me-1" routerLink="..">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<div class="component">
+  <p>movie-detail works!</p>
+  <ul class="list-group" *ngIf="movie$ | async as movie">
+    <li class="list-group-item active">{{ movie.title }}</li>
+    <li class="list-group-item">Release Year: {{ movie.year }}</li>
+    <li class="list-group-item">Studio: {{ movie.studio }}</li>
+    <li class="list-group-item">In Cinemas: {{ movie.isInCinema }}</li>
+    <li class="list-group-item">Age Category: {{ movie.ageCategory }}</li>
+  </ul>
+</div>
