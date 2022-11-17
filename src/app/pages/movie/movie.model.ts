@@ -1,5 +1,4 @@
-import { Studio } from '../studio/studio.model';
-export enum AgeCatergory {
+export enum AgeCategory {
   Adult = '16+',
   Family = 'All ages',
   Child = 'Children',
@@ -11,5 +10,5 @@ export class Movie {
   year: number = 2022;
   studio: string = '';
   isInCinema: boolean = false;
-  ageCategory: AgeCatergory = AgeCatergory.Family;
+  ageCategory: AgeCategory = AgeCategory.Family;
 }

@@ -7,6 +7,7 @@
     novalidate
   >
     <div class="form-row">
+      <!-- Movie Title -->
       <div class="form-group col-sm-12 col-lg-4">
         <label for="movietitle">Title</label>
         <input
@@ -27,19 +28,20 @@
         />
         <!-- Show invalidity message -->
         <div
-          *ngIf="movietitle.valid && movietitle.touched"
+          *ngIf="movietitle.invalid && movietitle.touched"
           class="invalid-feedback"
         >
           <div *ngIf="movietitle.errors?.['required']">
             Movie name is vereist.
           </div>
           <div *ngIf="movietitle.errors?.['minlength']">
-            Minum title lenght is 3
+            Min title lenght is 3
           </div>
         </div>
         <!-- end -->
       </div>
       <br />
+      <!-- Release Year -->
       <div class="form-group col-sm-12 col-lg-4">
         <label for="realeaseyear">Release Year</label>
         <input
@@ -61,25 +63,23 @@
         />
         <!-- Show invalidity message -->
         <div
-          *ngIf="movieyear.valid && movieyear.touched"
+          *ngIf="movieyear.invalid && movieyear.touched"
           class="invalid-feedback"
         >
-          <div
-            *ngIf="movieyear.errors?.['required']"
-            class="alert alert-danger"
-          >
+          <div *ngIf="movieyear.errors?.['required']">
             Movie year is vereist.
           </div>
           <div *ngIf="movieyear.errors?.['minlength']">
-            Minimum length for year is 4
+            A year must have 4 digits
           </div>
           <div *ngIf="movieyear.errors?.['maxlength']">
-            Maximum length for year is 4
+            A year must have 4 digits
           </div>
         </div>
         <!-- end -->
       </div>
       <br />
+      <!-- Movie Studio -->
       <div class="form-group col-sm-12 col-lg-4">
         <label for="moviestudio">Studio</label>
         <select
@@ -89,47 +89,53 @@
           name="moviestudio"
           #moviestudio="ngModel"
           required
+          [ngClass]="{
+            'is-invalid': moviestudio.invalid && moviestudio.touched
+          }"
         >
+          <option value="" selected>Select</option>
+
           <!-- Populate option via object from component -->
           <ng-container *ngFor="let studio of studios$ | async">
             <option [value]="studio.name">{{ studio.name }}</option>
           </ng-container>
           <!-- end -->
         </select>
+        <!-- Show invalidity message -->
+        <div
+          *ngIf="moviestudio.invalid && moviestudio.dirty"
+          class="invalid-feedback"
+        >
+          Studio is vereist
+        </div>
+        <!-- end -->
       </div>
       <br />
+      <!-- Movie Age Category -->
       <p>Age Category</p>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineRadio1">All Family</label>
+      <div
+        class="form-check form-check-inline"
+        *ngFor="let category of ageCategory"
+      >
+        <label class="form-check-label" for="category_{{ category }}">
+          <input
+            id="category_{{ category }}"
+            [value]="category"
+            type="radio"
+            name="enums"
+            #enums="ngModel"
+            [(ngModel)]="movie.ageCategory"
+          />
+          {{ category }}
+        </label>
       </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineRadio2">12+</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineRadio3">Kids</label>
-      </div>
-      <button type="submit" class="btn btn-primary me-1" routerLink="..">
+
+      <!-- Submit buttons -->
+      <button
+        type="submit"
+        class="btn btn-primary me-1"
+        [disabled]="!movieEditForm.valid"
+      >
         Save
       </button>
       <button type="submit" class="btn btn-secondary me-1" routerLink="..">

@@ -17,6 +17,11 @@ export class StudioService {
       year: 1980,
       isActive: true,
     },
+    {
+      name: 'Disney',
+      year: 1950,
+      isActive: true,
+    },
   ];
 
   constructor() {}

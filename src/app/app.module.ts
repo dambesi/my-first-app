@@ -17,11 +17,8 @@ import { EditComponent } from './pages/entity/edit/edit.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MovieComponent } from './pages/movie/movie.component';
 import { StudioComponent } from './pages/studio/studio.component';
-import { MovieListComponent } from './pages/movie/movie-list/movie-list.component';
-import { MovieEditComponent } from './pages/movie/movie-edit/movie-edit.component';
-import { MovieDetailComponent } from './pages/movie/movie-detail/movie-detail.component';
+import { MovieModule } from './pages/movie/movie.module';
 
 @NgModule({
   declarations: [
@@ -37,11 +34,7 @@ import { MovieDetailComponent } from './pages/movie/movie-detail/movie-detail.co
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    MovieComponent,
     StudioComponent,
-    MovieListComponent,
-    MovieEditComponent,
-    MovieDetailComponent,
   ],
   imports: [
     BrowserModule,
